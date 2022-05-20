@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-import "../images/logo.png";
+import logo from "../images/logo.png";
 
 
 function Navbar() {
@@ -9,7 +9,7 @@ function Navbar() {
 
   return (
     <nav className="Navbar">
-    <img src="../images/logo.png" alt="logo"></img> |
+    <img src={logo} alt="logo" width="80px"></img> |
       <NavLink to="/">Home</NavLink> |
       <NavLink to="/ads">Teacher Ads</NavLink> |
       <NavLink to="/subjects">Subjects</NavLink> |

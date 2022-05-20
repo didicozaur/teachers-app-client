@@ -8,8 +8,9 @@ function AdList(props) {
       return (
         <div key={element._id} className="ad-box">
           <p>{element.title}</p>
+          <p>{element.location}</p>
+          <p>{element.level}</p>
           <NavLink to={`/ads/${element._id}`}>More details</NavLink> |
-          <NavLink to={`/ads/${element._id}/edit`}>Edit</NavLink> |
           
         </div>
       );
