@@ -1,24 +1,43 @@
-import logo from './logo.svg';
+
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Footer from './components/Footer';
+import Navbar from './components/NavBar';
+import AdDetails from './pages/AdDetails';
+import AdList from './pages/AdList';
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+
 
 function App() {
+
+  const [ads, setAds] = useState([]);
+
+  const fetchAds = () => {
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/ads`)
+      .then((response) => {
+        setAds(response.data);
+      })
+      .catch((err) => console.log("Error getting ads from DB", err));
+  }, []);}
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+
+      <Routes>
+        <Route path="/ads" element={ <AdList ads={ads}/> }/>
+        <Route path="/ads/:adId" element={<AdDetails adId={adId} />} updatePage={fetchAds}/>
+      </Routes>
+     
+
+      <Footer />
+    </>
   );
 }
 
