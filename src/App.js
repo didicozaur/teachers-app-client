@@ -11,6 +11,8 @@ import Home from "./pages/Home";
 import SubjectsPage from "./pages/SubjectsPage";
 import AddSubject from "./pages/AddSubject";
 import SubjectDetailsPage from "./pages/SubjectDetailsPage";
+import SignupPage from "./pages/SignupPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   const [ads, setAds] = useState([]);
@@ -42,6 +44,8 @@ function App() {
           element={<AdDetails />}
           updatePage={fetchAds}
         />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
 
       <Footer />
