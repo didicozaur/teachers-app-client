@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./pages/Home";
 import SubjectsPage from "./pages/SubjectsPage";
 import AddSubject from "./pages/AddSubject";
+import SubjectDetailsPage from "./pages/SubjectDetailsPage";
 
 function App() {
   const [ads, setAds] = useState([]);
@@ -34,6 +35,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/subjects" element={<SubjectsPage />} />
         <Route path="/subjects/add" element={<AddSubject />} />
+        <Route path="subjects/:subjectId" element={<SubjectDetailsPage />} />
         <Route path="/ads" element={<AdList ads={ads} />} />
         <Route
           path="/ads/:adId"
