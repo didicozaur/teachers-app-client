@@ -13,7 +13,7 @@ function Navbar() {
       <NavLink to="/subjects">Subjects</NavLink> |
       {isLoggedIn && (
         <>
-          <NavLink to="/ads/create">Create New Ad</NavLink> |
+          <NavLink to="/ads/add">Create New Ad</NavLink> |
           <NavLink to="/subjects/add">Create Subject</NavLink>|
           <span>Welcome, {user.email} </span> |
           <button onClick={logOutUser}>Logout</button>
