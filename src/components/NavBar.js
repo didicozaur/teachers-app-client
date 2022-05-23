@@ -11,15 +11,16 @@ function Navbar() {
       <img src={logo} alt="logo" width="80px"></img> |
       <NavLink to="/">Home</NavLink> |<NavLink to="/ads">Teacher Ads</NavLink> |
       <NavLink to="/subjects">Subjects</NavLink> |
-      {isLoggedIn && (
+      {isLoggedIn ? 
+        (
         <>
           <NavLink to="/ads/add">Create New Ad</NavLink> |
           <NavLink to="/subjects/add">Create Subject</NavLink>|
           <span>Welcome, {user.email} </span> |
           <button onClick={logOutUser}>Logout</button>
-        </>
-      )}
-      {!isLoggedIn && (
+        </>)
+      
+       :(
         <>
           <NavLink to="/signup">Register</NavLink> |
           <NavLink to="/login">Login</NavLink>

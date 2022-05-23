@@ -15,7 +15,7 @@ function SubjectsPage() {
   useEffect(() => {
     getSubjects();
   }, []);
-  console.log(subjects);
+  
   return (
     <div>
       {subjects.map((subject) => {

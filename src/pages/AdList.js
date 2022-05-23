@@ -1,21 +1,24 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function AdList(props) {
 
     const renderAds = () => {
-    const result = props.ads.map((element) => {
-      return (
-        <div key={element._id} className="ad-box">
-          <p>{element.title}</p>
-          <p>{element.location}</p>
-          <p>{element.level}</p>
-          <NavLink to={`/ads/${element._id}`}>More details</NavLink> |
-          
-        </div>
-      );
-    });
-    return result;
+   return (
+     <div>
+       {props.ads.map((ad) => {
+         return (
+           <div key={ad._id}>
+            <h2>{ad.title}</h2>
+            {ad.location} | {ad.price} euros | {ad.level}
+             <Link to={`/ads/${ad._id}`}>
+               <h5>More Details</h5>
+             </Link>
+           </div>
+         );
+       })}
+     </div>
+   );
   };
 
   return (
