@@ -1,6 +1,7 @@
 .hero {
-  background-size: 100px;
-  height: 10vh;
+  background-image: url("/src/images/education1.jpg");
+  background-size: cover;
+  height: 100vh;
   position: relative;
   background-repeat: no-repeat;
 }

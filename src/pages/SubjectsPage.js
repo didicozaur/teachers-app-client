@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AddSubject from "../components/AddSubject";
 
 function SubjectsPage() {
   const [subjects, setSubjects] = useState([]);
