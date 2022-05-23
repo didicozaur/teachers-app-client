@@ -13,9 +13,11 @@ import AddSubject from "./pages/AddSubject";
 import SubjectDetailsPage from "./pages/SubjectDetailsPage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
+import AddAd from "./pages/AddAd";
 
 function App() {
   const [ads, setAds] = useState([]);
+  const [subjects, setSubjects] = useState([]);
 
   const fetchAds = () => {
     axios
@@ -29,6 +31,18 @@ function App() {
     fetchAds();
   }, []);
 
+  const fetchSubjects = () => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/subjects`)
+      .then((response) => {
+        setSubjects(response.data);
+      })
+      .catch((err) => console.log("Error getting subjects from DB", err));
+  };
+  useEffect(() => {
+    fetchSubjects();
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -39,6 +53,12 @@ function App() {
         <Route path="/subjects/add" element={<AddSubject />} />
         <Route path="subjects/:subjectId" element={<SubjectDetailsPage />} />
         <Route path="/ads" element={<AdList ads={ads} />} />
+        <Route
+          path="/ads/add"
+          element={
+            <AddAd ads={ads} subjects={subjects} updatePage={fetchAds} />
+          }
+        />
         <Route
           path="/ads/:adId"
           element={<AdDetails />}

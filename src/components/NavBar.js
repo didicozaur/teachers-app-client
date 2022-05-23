@@ -11,10 +11,10 @@ function Navbar() {
       <img src={logo} alt="logo" width="80px"></img> |
       <NavLink to="/">Home</NavLink> |<NavLink to="/ads">Teacher Ads</NavLink> |
       <NavLink to="/subjects">Subjects</NavLink> |
-      <NavLink to="/subjects/add">Create Subject</NavLink>|
       {isLoggedIn && (
         <>
-          <NavLink to="/ads/create">Create New Ad</NavLink> |
+          <NavLink to="/ads/add">Create New Ad</NavLink> |
+          <NavLink to="/subjects/add">Create Subject</NavLink>|
           <span>Welcome, {user.email} </span> |
           <button onClick={logOutUser}>Logout</button>
         </>

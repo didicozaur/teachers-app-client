@@ -26,12 +26,25 @@ function AdDetails(props) {
         <div key={element._id} className="ad-box">
           <p>{element.title}</p>
           <p>{element.location}</p>
-          <p>{element.level}</p> 
+          <p>{element.level}</p>
+          <p>{element.price}</p>
           <br></br>
           <p>{element.description}</p>
           <h2>About your teacher: {element.experience}</h2>
-          <Button><a href="/ads" onClick={() => {deleteAd(element._id)}}>Delete</a></Button> |
-          <NavLink to={`/ads/${element._id}/edit`}>Edit</NavLink> 
+
+           {{ Authorization: `Bearer ${storedToken}` } &&
+          <Button>
+            <a
+              href="/ads"
+              onClick={() => {
+                deleteAd(element._id);
+              }}
+            >
+              Delete
+            </a>
+          </Button>
+          |<NavLink to={`/ads/${element._id}/edit`}>Edit</NavLink>}
+          
         </div>
       );
     });
