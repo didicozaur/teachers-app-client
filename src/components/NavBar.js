@@ -46,7 +46,6 @@ function Navbar() {
             </>
           )}
         </ul>
-
         <div className="col-md-3 text-end">
           {!isLoggedIn && (
             <>
