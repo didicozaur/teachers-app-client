@@ -31,7 +31,9 @@ function Navbar() {
           {isLoggedIn && (
             <>
               <li>
-                <NavLink to="/ads/add">Create New Ad</NavLink>
+                <NavLink to="/ads/add" className="nav-link px-2 link-dark">
+                  Create New Ad
+                </NavLink>
               </li>
               <li>
                 <NavLink className="btn btn-outline-primary me-2" to="/profile">
