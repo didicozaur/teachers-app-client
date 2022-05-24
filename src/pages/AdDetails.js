@@ -1,8 +1,7 @@
 import axios from "axios";
 import { Button } from "bootstrap";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { AuthContext } from "../context/auth.context";
 
 
 
@@ -29,31 +28,40 @@ function AdDetails(props) {
       .catch((err) => console.log("Error deleting ad", err))
   };
 
-  ad.map((ad)=> {
+  const renderDetails = () => {
+  return (
+    <div>
+    <h2>Ad Details</h2>
+    {ad.map((elm) => {
     return (
-           <div key={ad._id}>
-            <h2>{ad.title}</h2>
-            {ad.location} | {ad.price} euros | {ad.level}
-            <p>About your teacher: {ad.experience}</p><br></br>
-            <p>{ad.description}</p>
+      <div key={elm._id}>
+        <h2>{elm.title}</h2>
+        <p>{elm.location} | {elm.price} euros | {elm.level}</p>
+        <p>About your teacher: {elm.experience}</p>
+        <br></br>
+        <p>{elm.description}</p>
+        <Button>
+          <a
+            href="/ads"
+            onClick={() => {
+              deleteAd(elm._id);
+            }}
+          >
+            Delete
+          </a>
+        </Button>
+        <Button>
+          <Link to={`/ads/${elm._id}/edit`}>Edit</Link>
+        </Button>
+      </div> 
+      
+    )
+  })
+  }</div>
+  )}
 
-          <Button>
-            <a
-              href="/ads"
-              onClick={() => {
-                deleteAd(ad._id);
-              }}
-            >
-              Delete
-            </a>
-          </Button>
-          <Button>
-          <Link to={`/ads/${ad._id}/edit`}>Edit</Link>
-          </Button>
-           
-            
-           </div>
-         )})
+  return renderDetails();
+
   }
        
     
