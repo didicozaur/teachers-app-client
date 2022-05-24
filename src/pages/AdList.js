@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function AdList(props) {
 
-    const renderAds = () => {
+  const renderAds = () => {
    return (
      <div>
        {props.ads.map((ad) => {

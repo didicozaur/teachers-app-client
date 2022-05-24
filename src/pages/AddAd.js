@@ -76,9 +76,9 @@ function AddAd(props){
           <label>Price</label>
           <input
             type="text"
-            name="location"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
+            name="price"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
           />
 
           <label>User</label>

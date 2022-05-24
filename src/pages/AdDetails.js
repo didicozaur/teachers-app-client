@@ -36,31 +36,27 @@ function AdDetails(props) {
     return (
       <div key={elm._id}>
         <h2>{elm.title}</h2>
-        <p>{elm.location} | {elm.price} euros | {elm.level}</p>
+        <p>
+          {elm.location} | {elm.price} euros | {elm.levels}
+        </p>
         <p>About your teacher: {elm.experience}</p>
-        <br></br>
         <p>{elm.description}</p>
-        <Button>
-          <a
-            href="/ads"
-            onClick={() => {
-              deleteAd(elm._id);
-            }}
-          >
-            Delete
-          </a>
+        <Button
+          onClick={() => {
+            deleteAd(elm._id);
+          }}
+        >Delete
         </Button>
         <Button>
           <Link to={`/ads/${elm._id}/edit`}>Edit</Link>
         </Button>
-      </div> 
-      
-    )
+      </div>
+    );
   })
   }</div>
   )}
 
-  return renderDetails();
+  return (<>{renderDetails()}</>);
 
   }
        
