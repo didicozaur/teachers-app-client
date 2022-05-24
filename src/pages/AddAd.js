@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState } from "react";
-import SubjectsPage from "./SubjectsPage";
 
 function AddAd(props){
     const [title, setTitle] = useState("");
@@ -34,7 +33,7 @@ function AddAd(props){
       <div className="AddAd">
         <h3>New Ad</h3>
 
-        <form onSubmit={handleSumbit}>
+        <form onSubmit={handleSubmit}>
           <label>Title</label>
           <input
             type="text"
@@ -81,6 +80,9 @@ function AddAd(props){
             value={location}
             onChange={(e) => setLocation(e.target.value)}
           />
+
+          <label>User</label>
+          <input type="text" name="user" value={user}/>
         </form>
       </div>
     );

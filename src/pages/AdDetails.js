@@ -1,63 +1,63 @@
 import axios from "axios";
 import { Button } from "bootstrap";
-import React from "react";
-import { NavLink, useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
+
 
 
 function AdDetails(props) {
 
-  const adId = useParams();
+  const {adId} = useParams();
+
+  const [ad, setAd] = useState(null)
+
+  const getAd = () => {
+    axios.get(`${process.env.REACT_APP_API_URL}/ads/${adId}`)
+    .then(response => setAd(response.data))
+    .catch(err => console.log("Error getting info from DB", err))
+  }
+  useEffect(() => {
+    getAd();
+  }, []);
 
   const deleteAd = (adId) => {
-      const storedToken = localStorage.getItem("authToken");
-
-      axios.delete(`${process.env.REACT_APP_API_URL}/ads/${adId}`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
+      axios.delete(`${process.env.REACT_APP_API_URL}/ads/${adId}`)
       .then(() => {
           props.updatePage()
       })
       .catch((err) => console.log("Error deleting ad", err))
   };
 
-  const renderAds = () => {
-    const result = props.ads.map((element) => {
-      return (
-        <div key={element._id} className="ad-box">
-          <p>{element.title}</p>
-          <p>{element.location}</p>
-          <p>{element.level}</p>
-          <p>{element.price}</p>
-          <br></br>
-          <p>{element.description}</p>
-          <h2>About your teacher: {element.experience}</h2>
+    return (
+           <div key={ad._id}>
+           
+            <h2>{ad.title}</h2>
+            {ad.location} | {ad.price} euros | {ad.level}
+            <p>About your teacher: {ad.experience}</p><br></br>
+            <p>{ad.description}</p>
 
-           {{ Authorization: `Bearer ${storedToken}` } &&
           <Button>
             <a
               href="/ads"
               onClick={() => {
-                deleteAd(element._id);
+                deleteAd(ad._id);
               }}
             >
               Delete
             </a>
           </Button>
-          |<NavLink to={`/ads/${element._id}/edit`}>Edit</NavLink>}
-          
-        </div>
-      );
-    });
-    return result;
-  };
+          <Button>
+          <Link to={`/ads/${ad._id}/edit`}>Edit</Link>
+          </Button>
+           
+            
+           </div>
+         );
+       }
+    
 
-  return (
-    <div className="AdsList">
-      <h1>List of Ads</h1>
 
-      <section>{props.ads === null ? <p>loading...</p> : renderAds()}</section>
-    </div>
-  );
-}
+
 
 export default AdDetails;

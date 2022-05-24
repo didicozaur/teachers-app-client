@@ -14,7 +14,7 @@ function SubjectDetailsPage() {
         setProject(oneSubject);
       })
       .catch((error) =>
-        console.log("Eror getting the subject details from API", error)
+        console.log("Error getting the subject details from API", error)
       );
   };
   useEffect(() => {
