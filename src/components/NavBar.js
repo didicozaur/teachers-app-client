@@ -22,17 +22,29 @@ function Navbar() {
               Ads
             </NavLink>
           </li>
-
-          {isLoggedIn && (
-            <li>
-              <NavLink to="/ads/add">Create New Ad</NavLink>
-            </li>
-          )}
           <li>
             <NavLink to="/subjects" className="nav-link px-2 link-dark">
               Subjects
             </NavLink>
           </li>
+
+          {isLoggedIn && (
+            <>
+              <li>
+                <NavLink to="/ads/add">Create New Ad</NavLink>
+              </li>
+              <li>
+                <NavLink className="btn btn-outline-primary me-2" to="/profile">
+                  Profile
+                </NavLink>
+              </li>
+              <li>
+                <button className="btn btn-primary" onClick={logOutUser}>
+                  Logout
+                </button>
+              </li>
+            </>
+          )}
         </ul>
 
         <div className="col-md-3 text-end">
@@ -44,16 +56,6 @@ function Navbar() {
               <NavLink className="btn btn-primary" to="/login">
                 Login
               </NavLink>
-            </>
-          )}
-          {isLoggedIn && (
-            <>
-              <NavLink className="btn btn-outline-primary me-2" to="/profile">
-                Profile
-              </NavLink>
-              <button className="btn btn-primary" onClick={logOutUser}>
-                Logout
-              </button>
             </>
           )}
         </div>
