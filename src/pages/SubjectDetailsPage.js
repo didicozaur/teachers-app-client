@@ -22,16 +22,19 @@ function SubjectDetailsPage() {
   }, []);
 
   return (
-    <div>
-      {subject && (
-        <div>
-          <h1>{subject.title}</h1>
-          <p>{subject.description}</p>
-        </div>
-      )}
-      <Link to="/subjects">
-        <button>Back to Subjects</button>
-      </Link>
+    <div className="container">
+      <div className="row g-4 mb-4">
+        {" "}
+        {subject && (
+          <div>
+            <h1>{subject.title}</h1>
+            <p>{subject.description}</p>
+          </div>
+        )}
+        <Link to="/subjects">
+          <button>Back to Subjects</button>
+        </Link>
+      </div>
     </div>
   );
 }
