@@ -27,9 +27,6 @@ function App() {
       })
       .catch((err) => console.log("Error getting ads from DB", err));
   };
-  useEffect(() => {
-    fetchAds();
-  }, []);
 
   const fetchSubjects = () => {
     axios
@@ -41,6 +38,7 @@ function App() {
   };
   useEffect(() => {
     fetchSubjects();
+    fetchAds();
   }, []);
 
   return (
@@ -50,7 +48,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/subjects" element={<SubjectsPage />} />
-        <Route path="/subjects/add" element={<AddSubject />} />
+        <Route
+          path="/subjects/add"
+          element={<AddSubject updatePage={fetchSubjects} />}
+        />
         <Route path="subjects/:subjectId" element={<SubjectDetailsPage />} />
         <Route path="/ads" element={<AdList ads={ads} />} />
         <Route
