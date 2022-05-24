@@ -27,37 +27,34 @@ function Navbar() {
               Subjects
             </NavLink>
           </li>
-
           {isLoggedIn && (
-            <>
-              <li>
-                <NavLink to="/ads/add" className="nav-link px-2 link-dark">
-                  Create New Ad
-                </NavLink>
-              </li>
-              <li>
-                <NavLink className="btn btn-outline-primary me-2" to="/profile">
-                  Profile
-                </NavLink>
-              </li>
-              <li>
-                <button className="btn btn-primary" onClick={logOutUser}>
-                  Logout
-                </button>
-              </li>
-            </>
+            <li>
+              <NavLink to="/ads/add" className="nav-link px-2 link-dark">
+                Create New Ad
+              </NavLink>
+            </li>
           )}
         </ul>
         <div className="col-md-3 text-end">
           {!isLoggedIn && (
             <>
-              <NavLink className="btn btn-outline-primary me-2" to="/signup">
+              <NavLink className="btn btn-outline-success me-2" to="/signup">
                 Register
               </NavLink>
-              <NavLink className="btn btn-primary" to="/login">
+              <NavLink className="btn btn-success" to="/login">
                 Login
               </NavLink>
             </>
+          )}
+          {isLoggedIn && (
+            <div className="d-flex justify-content-end">
+              <NavLink className="btn btn-outline-success me-2" to="/profile">
+                Profile
+              </NavLink>
+              <button className="btn btn-success" onClick={logOutUser}>
+                Logout
+              </button>
+            </div>
           )}
         </div>
       </header>
