@@ -10,14 +10,14 @@ function AdDetails(props) {
 
   const {adId} = useParams();
 
-  const [ad, setAd] = useState(null)
-
+  const [ad, setAd] = useState([]);
+ 
   const getAd = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/ads/${adId}`)
     .then(response => setAd(response.data))
     .catch(err => console.log("Error getting info from DB", err))
   }
-  useEffect(() => {
+   useEffect(() => {
     getAd();
   }, []);
 
@@ -29,9 +29,9 @@ function AdDetails(props) {
       .catch((err) => console.log("Error deleting ad", err))
   };
 
+  ad.map((ad)=> {
     return (
            <div key={ad._id}>
-           
             <h2>{ad.title}</h2>
             {ad.location} | {ad.price} euros | {ad.level}
             <p>About your teacher: {ad.experience}</p><br></br>
@@ -53,8 +53,9 @@ function AdDetails(props) {
            
             
            </div>
-         );
-       }
+         )})
+  }
+       
     
 
 

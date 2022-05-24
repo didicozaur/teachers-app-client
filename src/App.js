@@ -62,8 +62,8 @@ function App() {
         />
         <Route
           path="/ads/:adId"
-          element={<AdDetails />}
-          updatePage={fetchAds}
+          element={<AdDetails updatePage={fetchAds}/>}
+          
         />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
