@@ -75,7 +75,7 @@ function AddAd(props){
 
           <label>Price</label>
           <input
-            type="text"
+            type="Number"
             name="price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
@@ -83,7 +83,11 @@ function AddAd(props){
 
           <label>User</label>
           <input type="text" name="user" value={user}/>
+          
+          <button type="submit">Submit</button>
         </form>
+
+        
       </div>
     );
 }
