@@ -13,6 +13,7 @@ import SubjectDetailsPage from "./pages/SubjectDetailsPage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import AddAd from "./pages/AddAd";
+import EditAd from "./pages/EditAd";
 
 function App() {
   const [ads, setAds] = useState([]);
@@ -62,6 +63,12 @@ function App() {
         <Route
           path="/ads/:adId"
           element={<AdDetails updatePage={fetchAds} />}
+        />
+        <Route
+          path="/ads/:adId/edit"
+          element={
+            <EditAd ads={ads} subjects={subjects} updatePage={fetchAds} />
+          }
         />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />

@@ -1,49 +1,50 @@
 import axios from "axios";
 import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
-function AddAd(props) {
-  const [title, setTitle] = useState("");
-  const [subject, setSubject] = useState("");
-  const [experience, setExperience] = useState("");
-  const [description, setDescription] = useState("");
-  const [location, setLocation] = useState("");
-  const [price, setPrice] = useState("");
-  const [level, setLevel] = useState("");
+function EditAd(props) {
+  const navigate = useNavigate();
+  const { adId } = useParams();
+
+  //getting ad info from specific ad id
+  const adDetails = props.ads?.find((ad) => ad._id === adId);
+
+  const [title, setTitle] = useState(adDetails?.title);
+  const [subject, setSubject] = useState(adDetails?.subject);
+  const [experience, setExperience] = useState(adDetails?.experience);
+  const [description, setDescription] = useState(adDetails?.description);
+  const [location, setLocation] = useState(adDetails?.location);
+  const [price, setPrice] = useState(adDetails?.price);
+  const [level, setLevel] = useState(adDetails?.levels);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const requestBody = {
+    const newDetails = {
       title,
       subject,
       experience,
       description,
-      level,
       location,
       price,
+      level,
     };
 
     axios
-      .post(`${process.env.REACT_APP_API_URL}/ads/add`, requestBody)
+      .put(`${process.env.REACT_APP_API_URL}/ads/${adId}/edit`, newDetails)
       .then((response) => {
-        setTitle("");
-        setSubject("");
-        setExperience("");
-        setDescription("");
-        setLocation("");
-        setPrice("");
-        setLevel("");
         props.fetchAds();
+        navigate("/ads");
       })
-      .catch((err) => console.log("Error creating Ad in DB", err));
+      .catch((err) => console.log("Error editing Ad in DB", err));
   };
 
   return (
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-12 col-md-10 col-lg-8 mx-auto text-center"></div>
-        <div className="AddAd">
-          <h3>New Ad</h3>
+        <div className="EditAd">
+          <h3>Update your ad</h3>
           <hr />
 
           <form
@@ -84,8 +85,8 @@ function AddAd(props) {
             <label>Description</label>
             <input
               type="text"
-              className="form-control mb-2"
               name="description"
+              className="form-control mb-2"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
@@ -93,8 +94,8 @@ function AddAd(props) {
             <label>Experience</label>
             <input
               type="text"
-              className="form-control mb-2"
               name="experience"
+              className="form-control mb-2"
               value={experience}
               onChange={(e) => setExperience(e.target.value)}
             />
@@ -102,8 +103,8 @@ function AddAd(props) {
             <label>Location</label>
             <input
               type="text"
-              className="form-control mb-2"
               name="location"
+              className="form-control mb-2"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
             />
@@ -111,8 +112,8 @@ function AddAd(props) {
             <label>Price</label>
             <input
               type="Number"
-              className="form-control mb-2"
               name="price"
+              className="form-control mb-2"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
             />
@@ -123,16 +124,16 @@ function AddAd(props) {
           </form>
           <hr />
           <div className="d-flex justify-content-center">
-          <p>
-            Couldn't find the Subject you're looking for?{" "}
-            <a href="/subjects/add">Create a new one!</a>
-          </p>
+           
+            <p>
+              Couldn't find the Subject you're looking for?{" "}
+              <a href="/subjects/add">Create a new one!</a>
+            </p>
           </div>
-          <hr />
         </div>
       </div>
     </div>
   );
 }
 
-export default AddAd;
+export default EditAd;

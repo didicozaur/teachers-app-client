@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Button } from "bootstrap";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
@@ -59,7 +58,6 @@ function AdDetails(props) {
   </div>)
   }
 
-  // return (<>{renderDetails()}</>);
   return (
     <>
       <h2>Ad Details</h2>
