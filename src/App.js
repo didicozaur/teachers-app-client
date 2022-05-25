@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
 import Footer from "./components/Footer";
 import Navbar from "./components/NavBar";
 import AdDetails from "./pages/AdDetails";
@@ -62,8 +61,7 @@ function App() {
         />
         <Route
           path="/ads/:adId"
-          element={<AdDetails updatePage={fetchAds}/>}
-          
+          element={<AdDetails updatePage={fetchAds} />}
         />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />

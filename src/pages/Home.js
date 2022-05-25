@@ -1,11 +1,10 @@
-import "./Home.css";
 import AdsList from "../components/AdsList";
 const heroImage = require("../images/education1.jpg");
 
 function Home() {
   return (
     <div className="container">
-      <div className="row flex-lg-row-reverse align-items-center g-4 py-2">
+      <div className="row flex-lg-row-reverse align-items-center g-4 pt-2 pb-4">
         <div className="col-12 col-lg-6">
           <img
             src={heroImage}
