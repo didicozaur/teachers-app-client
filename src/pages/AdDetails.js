@@ -9,16 +9,24 @@ function AdDetails(props) {
 
   const {adId} = useParams();
 
-  const [ad, setAd] = useState([]);
- 
+  const [ad, setAd] = useState(null);
+
+    useEffect(() => {
+      getAd();
+    }, []);
+
+
   const getAd = () => {
+    console.log('inside get ad')
+    console.log(`${process.env.REACT_APP_API_URL}/ads/${adId}`)
     axios.get(`${process.env.REACT_APP_API_URL}/ads/${adId}`)
-    .then(response => setAd(response.data))
+    .then(response => {
+      console.log(response.data)
+      setAd(response.data)
+    })
     .catch(err => console.log("Error getting info from DB", err))
   }
-   useEffect(() => {
-    getAd();
-  }, []);
+
 
   const deleteAd = (adId) => {
       axios.delete(`${process.env.REACT_APP_API_URL}/ads/${adId}`)
@@ -31,32 +39,33 @@ function AdDetails(props) {
   const renderDetails = () => {
   return (
     <div>
-    <h2>Ad Details</h2>
-    {ad.map((elm) => {
-    return (
-      <div key={elm._id}>
-        <h2>{elm.title}</h2>
+      <div key={ad._id}>
+        <h2>{ad.title}</h2>
         <p>
-          {elm.location} | {elm.price} euros | {elm.levels}
+          {ad.location} | {ad.price} euros | {ad.levels}
         </p>
-        <p>About your teacher: {elm.experience}</p>
-        <p>{elm.description}</p>
-        <Button
+        <p>About your teacher: {ad.experience}</p>
+        <p>{ad.description}</p>
+
+        <button
           onClick={() => {
-            deleteAd(elm._id);
+            deleteAd(ad._id);
           }}
         >Delete
-        </Button>
-        <Button>
-          <Link to={`/ads/${elm._id}/edit`}>Edit</Link>
-        </Button>
-      </div>
-    );
-  })
-  }</div>
-  )}
+        </button>
+        <Link to={`/ads/${ad._id}/edit`}>Edit</Link>
+       
+      </div> 
+  </div>)
+  }
 
-  return (<>{renderDetails()}</>);
+  // return (<>{renderDetails()}</>);
+  return (
+    <>
+      <h2>Ad Details</h2>
+      {ad ? renderDetails() : <p>ad loading</p> }
+    </>
+  );
 
   }
        
