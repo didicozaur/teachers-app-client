@@ -21,9 +21,7 @@ function Home() {
             <br />
             Learn Today
           </h1>
-          <p className="lead">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit
-          </p>
+          <p className="lead">Experiment. Fail. Learn. Repeat.</p>
         </div>
       </div>
       <AdsList />
