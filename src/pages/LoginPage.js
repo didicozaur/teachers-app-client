@@ -34,27 +34,49 @@ function LoginPage(props) {
   };
 
   return (
-    <div className="LoginPage">
-      <h1>Login</h1>
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-12 col-md-10 col-lg-8 mx-auto text-center">
+          {errorMessage && (
+            <p className="bg-danger text-white error-message p-2">
+              {errorMessage}
+            </p>
+          )}
+          <form
+            onSubmit={handleLoginSubmit}
+            className="p-4 border rounded-3 bg-light"
+          >
+            <h4>Login</h4>
+            <hr />
 
-      <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
-
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
-
-        <button type="submit">Login</button>
-      </form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <p>Don't have an account yet?</p>
-      <Link to={"/signup"}> Sign Up</Link>
+            <input
+              type="email"
+              className="form-control mb-2"
+              placeholder="name@example.com"
+              value={email}
+              required={true}
+              onChange={handleEmail}
+            />
+            <input
+              type="password"
+              className="form-control mb-2"
+              placeholder="Password"
+              value={password}
+              required={true}
+              onChange={handlePassword}
+            />
+            <button className="w-100 btn btn-lg btn-success mb-2" type="submit">
+              Login
+            </button>
+            <div className="d-flex justify-content-center">
+              <p className="m-0">Don't have an account yet?</p>
+              <Link className="text-success ml-2" to={"/signup"}>
+                Sign Up
+              </Link>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
