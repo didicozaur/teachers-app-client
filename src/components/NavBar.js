@@ -18,18 +18,30 @@ function Navbar() {
 
         <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
           <li>
-            <NavLink to="/ads" className="nav-link px-2 link-dark">
+            <NavLink
+              to="/ads"
+              className="nav-link px-2 btn btn-outline-success link-dark"
+              style={{ margin: "10px" }}
+            >
               Ads
             </NavLink>
           </li>
           <li>
-            <NavLink to="/subjects" className="nav-link px-2 link-dark">
+            <NavLink
+              to="/subjects"
+              className="nav-link px-2 link-dark btn btn-outline-success"
+              style={{ margin: "10px" }}
+            >
               Subjects
             </NavLink>
           </li>
           {isLoggedIn && (
             <li>
-              <NavLink to="/ads/add" className="nav-link px-2 link-dark">
+              <NavLink
+                to="/ads/add"
+                className="nav-link px-2 link-dark btn btn-outline-success"
+                style={{ margin: "10px" }}
+              >
                 Create New Ad
               </NavLink>
             </li>
