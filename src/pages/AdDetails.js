@@ -1,11 +1,12 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 
 
 function AdDetails(props) {
+  const navigate = useNavigate();
 
   const {adId} = useParams();
   const { userId } = useParams();
@@ -18,6 +19,7 @@ function AdDetails(props) {
       getUser();
     }, []);
 
+  const storedToken = localStorage.getItem("authToken");
 
   const getAd = () => {
     console.log(`${process.env.REACT_APP_API_URL}/ads/${adId}`)
@@ -40,9 +42,11 @@ function AdDetails(props) {
 
 
   const deleteAd = (adId) => {
-      axios.delete(`${process.env.REACT_APP_API_URL}/ads/${adId}`)
+      axios.delete(`${process.env.REACT_APP_API_URL}/ads/${adId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` }})
       .then(() => {
-          props.updatePage()
+          props.updatePage();
+          navigate("/ads");
       })
       .catch((err) => console.log("Error deleting ad", err))
   };
