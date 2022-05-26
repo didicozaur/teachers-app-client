@@ -9,7 +9,6 @@ function AddAd(props) {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [price, setPrice] = useState("");
-  const [level, setLevel] = useState("");
 
   const navigate = useNavigate();
 
@@ -27,7 +26,6 @@ function AddAd(props) {
       subject,
       experience,
       description,
-      level,
       location,
       price,
     };
@@ -43,7 +41,6 @@ function AddAd(props) {
         setDescription("");
         setLocation("");
         setPrice("");
-        setLevel("");
         props.updatePage();
         navigate("/ads");
       })
@@ -81,17 +78,6 @@ function AddAd(props) {
               {props.subjects.map((element) => {
                 return <option value={element._id}>{element.title}</option>;
               })}
-            </select>
-
-            <label>Difficulty</label>
-            <select
-              name="levels"
-              className="form-control mb-2"
-              onChange={(e) => setLevel(e.target.value)}
-            >
-              <option value="Beginner">Beginner</option>
-              <option value="Intermediate">Intemediate</option>
-              <option value="Advanced">Advanced</option>
             </select>
 
             <label>Description</label>
@@ -138,9 +124,11 @@ function AddAd(props) {
           <div className="d-flex justify-content-center">
             <p>
               Couldn't find the Subject you're looking for?{" "}
-              <a className="text-success" href="/subjects/add">
-                Create a new one!
-              </a>
+              <button className="btn btn-success">
+                <a style={{ color: "white" }} href="/subjects/add">
+                  Create a new one!
+                </a>
+              </button>
             </p>
           </div>
           <hr />

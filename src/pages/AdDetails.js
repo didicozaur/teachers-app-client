@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 function AdDetails(props) {
+
   const navigate = useNavigate();
 
   const { adId } = useParams();
@@ -41,9 +42,12 @@ function AdDetails(props) {
   };
 
   const deleteAd = (adId) => {
-    axios
-      .delete(`${process.env.REACT_APP_API_URL}/ads/${adId}`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
+      axios.delete(`${process.env.REACT_APP_API_URL}/ads/${adId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` }})
+      .then((response) => {
+          props.updatePage();
+          navigate("/ads");
+          
       })
       .then(() => {
         props.updatePage();
@@ -59,10 +63,10 @@ function AdDetails(props) {
           <dt className="col-sm-3">Title</dt>
           <dd className="col-sm-9">{ad.title}</dd>
 
-          <dt className="col-sm-3">Details</dt>
-          <dd className="col-sm-9">
-            {ad.location} | {ad.price} | {ad.levels}{" "}
-          </dd>
+        <dt className="col-sm-3">Details</dt>
+        <dd className="col-sm-9">
+          {ad.location} | {ad.price} euros {" "}
+        </dd>
 
           <hr />
 
@@ -91,16 +95,16 @@ function AdDetails(props) {
               Edit
             </Link>
 
-            <button
-              style={{ margin: "10px" }}
-              className="btn btn-outline-danger"
-              onClick={() => {
-                deleteAd(ad._id);
-              }}
-            >
-              Delete
-            </button>
-          </div>
+          <button
+            style={{ margin: "10px" }}
+            className="btn btn-outline-danger"
+            onClick={() => {
+              deleteAd(ad._id);
+              
+            }}
+          >
+            Delete
+          </button>
         </div>
       </div>
     );
