@@ -129,7 +129,9 @@ function AddAd(props) {
           <div className="d-flex justify-content-center">
             <p>
               Couldn't find the Subject you're looking for?{" "}
-              <a href="/subjects/add">Create a new one!</a>
+              <a className="text-success" href="/subjects/add">
+                Create a new one!
+              </a>
             </p>
           </div>
           <hr />
