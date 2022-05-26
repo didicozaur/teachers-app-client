@@ -50,7 +50,7 @@ function App() {
   useEffect(() => {
     fetchSubjects();
     fetchAds();
-    fetchUsers();
+    // fetchUsers();
   }, []);
 
   return (
