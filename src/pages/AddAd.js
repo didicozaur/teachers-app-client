@@ -13,6 +13,8 @@ function AddAd(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const storedToken = localStorage.getItem("authToken");
+
     const requestBody = {
       title,
       subject,
@@ -24,7 +26,9 @@ function AddAd(props) {
     };
 
     axios
-      .post(`${process.env.REACT_APP_API_URL}/ads/add`, requestBody)
+      .post(`${process.env.REACT_APP_API_URL}/ads/add`, requestBody, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((response) => {
         setTitle("");
         setSubject("");
@@ -123,10 +127,10 @@ function AddAd(props) {
           </form>
           <hr />
           <div className="d-flex justify-content-center">
-          <p>
-            Couldn't find the Subject you're looking for?{" "}
-            <a href="/subjects/add">Create a new one!</a>
-          </p>
+            <p>
+              Couldn't find the Subject you're looking for?{" "}
+              <a href="/subjects/add">Create a new one!</a>
+            </p>
           </div>
           <hr />
         </div>

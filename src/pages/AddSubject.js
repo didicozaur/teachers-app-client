@@ -1,21 +1,28 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function AddSubject(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const storedToken = localStorage.getItem("authToken");
+
     const requestBody = { title, description };
     axios
-      .post(`${process.env.REACT_APP_API_URL}/subjects/add`, requestBody)
+      .post(`${process.env.REACT_APP_API_URL}/subjects/add`, requestBody, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((response) => {
         // Reset the state
         setTitle("");
         setDescription("");
-        props.refreshSubjects();
+        navigate("/subjects");
       })
       .catch((error) => console.log(error));
   };
