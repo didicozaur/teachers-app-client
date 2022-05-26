@@ -18,7 +18,7 @@ function SubjectsPage() {
 
   return (
     <div className="container">
-      <div className="row g-4 mb-4">
+      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
         {subjects.map((subject) => {
           return (
             <div className="col">
