@@ -14,7 +14,7 @@ function AdDetails(props) {
 
   useEffect(() => {
     getAd();
-    getUser();
+    // getUser();
   });
 
   const storedToken = localStorage.getItem("authToken");
