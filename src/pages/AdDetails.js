@@ -6,6 +6,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 
 function AdDetails(props) {
+
   const navigate = useNavigate();
 
   const {adId} = useParams();
@@ -44,9 +45,10 @@ function AdDetails(props) {
   const deleteAd = (adId) => {
       axios.delete(`${process.env.REACT_APP_API_URL}/ads/${adId}`, {
         headers: { Authorization: `Bearer ${storedToken}` }})
-      .then(() => {
+      .then((response) => {
           props.updatePage();
           navigate("/ads");
+          
       })
       .catch((err) => console.log("Error deleting ad", err))
   };
@@ -60,7 +62,7 @@ function AdDetails(props) {
 
         <dt className="col-sm-3">Details</dt>
         <dd className="col-sm-9">
-          {ad.location} | {ad.price} | {ad.levels}{" "}
+          {ad.location} | {ad.price} euros {" "}
         </dd>
 
         <hr />
@@ -95,6 +97,7 @@ function AdDetails(props) {
             className="btn btn-outline-danger"
             onClick={() => {
               deleteAd(ad._id);
+              
             }}
           >
             Delete

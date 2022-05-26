@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+
 
 function AddAd(props) {
 
@@ -9,12 +11,15 @@ function AddAd(props) {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [price, setPrice] = useState("");
-  const [level, setLevel] = useState("");
+
+  const navigate = useNavigate()
 
 
   useEffect(() => {
     setSubject(props.subjects?.[0]?._id);
   }, [props.subjects]);
+
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +31,6 @@ function AddAd(props) {
       subject,
       experience,
       description,
-      level,
       location,
       price,
     };
@@ -43,8 +47,8 @@ function AddAd(props) {
         setDescription("");
         setLocation("");
         setPrice("");
-        setLevel("");
-        props.fetchAds();
+        props.updatePage();
+        navigate("/ads");
       })
       .catch((err) => console.log("Error creating Ad in DB", err));
   };
@@ -80,17 +84,6 @@ function AddAd(props) {
               {props.subjects.map((element) => {
                 return <option value={element._id}>{element.title}</option>;
               })}
-            </select>
-
-            <label>Difficulty</label>
-            <select
-              name="levels"
-              className="form-control mb-2"
-              onChange={(e) => setLevel(e.target.value)}
-            >
-              <option value="Beginner">Beginner</option>
-              <option value="Intermediate">Intemediate</option>
-              <option value="Advanced">Advanced</option>
             </select>
 
             <label>Description</label>
@@ -129,7 +122,7 @@ function AddAd(props) {
               onChange={(e) => setPrice(e.target.value)}
             />
 
-            <button className="w-100 btn btn-lg btn-success mb-2" type="submit">
+            <button className="w-100 btn btn-lg btn-success mb-2" type="submit" >
               Submit
             </button>
           </form>
@@ -137,7 +130,7 @@ function AddAd(props) {
           <div className="d-flex justify-content-center">
             <p>
               Couldn't find the Subject you're looking for?{" "}
-              <a href="/subjects/add">Create a new one!</a>
+              <button className="btn btn-success"><a style={{ "color": "white"}} href="/subjects/add">Create a new one!</a></button>
             </p>
           </div>
           <hr />
