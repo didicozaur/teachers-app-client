@@ -45,8 +45,8 @@ Run `npm install` to install the following dependencies:
     "web-vitals": "^2.1.4"
 
 ## What to include in your .env file:
-`REACT_APP_API_URL= "http://localhost:3000/api"`
-`PORT = 3000`
+`REACT_APP_API_URL= "http://localhost:5005/api"`
+
 
 ## Demo
 Netlify link: https://learn-today-md.netlify.app
