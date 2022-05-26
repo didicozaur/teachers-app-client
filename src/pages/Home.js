@@ -8,7 +8,7 @@ function Home() {
         <div className="col-12 col-lg-6">
           <img
             src={heroImage}
-            className="d-block mx-lg-auto img-fluid"
+            className="d-block mx-lg-auto img-thumbnail img-fluid"
             alt="Bootstrap Themes"
             //width="700"
             //height="500"
