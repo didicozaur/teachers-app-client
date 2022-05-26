@@ -13,6 +13,7 @@ import SubjectDetailsPage from "./pages/SubjectDetailsPage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import AddAd from "./pages/AddAd";
+import ProfilePage from "./pages/ProfilePage";
 import EditAd from "./pages/EditAd";
 
 function App() {
@@ -83,6 +84,7 @@ function App() {
         />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
 
       <Footer />
