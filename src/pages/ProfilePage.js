@@ -1,16 +1,13 @@
 import { React } from "react";
 
-const profileImg = require("../images/person-placeholder.png");
-
 const ProfilePage = (props) => {
   return (
     <div>
       <div>
         <h1>Welcome</h1>
         <img
-          scr={profileImg}
+          scr="https://res.cloudinary.com/daeq6q5ym/image/upload/v1653544082/learn-today/person-placeholder_elud6t.jpg"
           alt="person-placeholder"
-          style={{ width: "100px", height: "100px", borderRadius: "50px" }}
         />
       </div>
     </div>
