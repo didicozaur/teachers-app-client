@@ -4,7 +4,6 @@ import { useNavigate } from "react-router";
 
 
 function AddAd(props) {
-
   const [title, setTitle] = useState("");
   const [subject, setSubject] = useState("");
   const [experience, setExperience] = useState("");
@@ -14,6 +13,8 @@ function AddAd(props) {
 
   const navigate = useNavigate()
 
+  const navigate = useNavigate();
+  console.log(subject);
 
   useEffect(() => {
     setSubject(props.subjects?.[0]?._id);
@@ -35,7 +36,6 @@ function AddAd(props) {
       price,
     };
 
-    
     axios
       .post(`${process.env.REACT_APP_API_URL}/ads/add`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -82,6 +82,12 @@ function AddAd(props) {
               required={true}
             >
               {props.subjects.map((element) => {
+                return (
+                  <option key={element._id} value={element.title}>
+                    {element.title}
+                  </option>
+                );
+
                 return <option value={element._id}>{element.title}</option>;
               })}
             </select>

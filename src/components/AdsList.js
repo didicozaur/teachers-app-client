@@ -43,7 +43,7 @@ export default function AdsList() {
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {subject === ""
           ? ads.map((ad) => {
-              return <AdCard ad={ad} />;
+              return <AdCard key={ad._id} ad={ad} />;
             })
           : ads
               .filter((ad) =>

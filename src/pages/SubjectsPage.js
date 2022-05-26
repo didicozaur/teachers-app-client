@@ -20,10 +20,10 @@ function SubjectsPage() {
   return (
     <div className="container">
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
-        {subjects.map((subject) => {
+        {props.subjects.map((subject) => {
           return (
-            <div className="col">
-              <div className="card" key={subject._id}>
+            <div className="col" key={subject._Id}>
+              <div className="card">
                 <div className="card-body text-center">
                   <Link
                     className="text-success text-decoration-none"
