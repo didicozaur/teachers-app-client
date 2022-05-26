@@ -41,7 +41,7 @@ Run `npm install` to install the following dependencies:
     "react-bootstrap": "^2.4.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "^2.1.3",
+    "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
 
 ## What to include in your .env file:
