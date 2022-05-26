@@ -1,21 +1,10 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+
+import React from "react";
 import { Link } from "react-router-dom";
 
 
-function SubjectsPage() {
-  const [subjects, setSubjects] = useState([]);
-
-  const getSubjects = () => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/subjects`)
-      .then((response) => setSubjects(response.data))
-      .catch((e) => console.log("Error getting Subjects from API", e));
-  };
-
-  useEffect(() => {
-    getSubjects();
-  }, []);
+function SubjectsPage(props) {
+  
 
   return (
     <div className="container">
