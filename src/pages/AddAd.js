@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { React, useEffect, useState } from "react";
 
 function AddAd(props) {
   const [title, setTitle] = useState("");
@@ -13,6 +13,11 @@ function AddAd(props) {
 
   const navigate = useNavigate();
   console.log(subject);
+
+  useEffect(() => {
+    setSubject(props.subjects?.[0]?._id);
+  }, [props.subjects]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -72,6 +77,7 @@ function AddAd(props) {
               name="subject"
               className="form-control mb-2"
               onChange={(e) => setSubject(e.target.value)}
+              required={true}
             >
               {props.subjects.map((element) => {
                 return (
@@ -79,6 +85,8 @@ function AddAd(props) {
                     {element.title}
                   </option>
                 );
+
+                return <option value={element._id}>{element.title}</option>;
               })}
             </select>
 
