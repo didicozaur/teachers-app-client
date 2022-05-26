@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 function EditAd(props) {
@@ -11,16 +11,11 @@ function EditAd(props) {
   const adDetails = props.ads?.find((ad) => ad._id === adId);
 
   const [title, setTitle] = useState(adDetails?.title);
-  const [subject, setSubject] = useState(adDetails?.subject);
+  const [subject, setSubject] = useState(adDetails?.subject._id);
   const [experience, setExperience] = useState(adDetails?.experience);
   const [description, setDescription] = useState(adDetails?.description);
   const [location, setLocation] = useState(adDetails?.location);
   const [price, setPrice] = useState(adDetails?.price);
-
-   useEffect(() => {
-     setSubject(props.subjects?.[0]?._id);
-   }, [props.subjects]);
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
