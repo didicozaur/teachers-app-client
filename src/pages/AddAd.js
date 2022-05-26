@@ -13,8 +13,6 @@ function AddAd(props) {
 
   const navigate = useNavigate()
 
-  const navigate = useNavigate();
-  console.log(subject);
 
   useEffect(() => {
     setSubject(props.subjects?.[0]?._id);

@@ -100,17 +100,15 @@ function AdDetails(props) {
             className="btn btn-outline-danger"
             onClick={() => {
               deleteAd(ad._id);
-              
-            }}
-          >
-            Delete
-          </button>
+            }}> Delete</button>
+        </div>
         </div>
       </div>
-    );
-  };
-
-  return (
+    )
+    }
+  
+  
+  return(
     <>
       <h2 className="d-flex justify-content-center">Ad Details</h2>
       <hr />
@@ -119,4 +117,5 @@ function AdDetails(props) {
   );
 }
 
-export default AdDetails;
+
+export default AdDetails

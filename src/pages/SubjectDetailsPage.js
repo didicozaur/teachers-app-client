@@ -1,6 +1,7 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+
 
 function SubjectDetailsPage() {
   const [subject, setProject] = useState(null);
