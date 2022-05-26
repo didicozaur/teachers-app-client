@@ -16,10 +16,11 @@ function EditAd(props) {
   const [description, setDescription] = useState(adDetails?.description);
   const [location, setLocation] = useState(adDetails?.location);
   const [price, setPrice] = useState(adDetails?.price);
-  const [level, setLevel] = useState(adDetails?.level);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+
 
     const newDetails = {
       title,
@@ -28,9 +29,10 @@ function EditAd(props) {
       description,
       location,
       price,
-      level,
     };
+
     const storedToken = localStorage.getItem("authToken");
+
     axios
       .put(`${process.env.REACT_APP_API_URL}/ads/${adId}/edit`, newDetails, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -79,17 +81,6 @@ function EditAd(props) {
               })}
             </select>
 
-            <label>Difficulty</label>
-            <select
-              name="levels"
-              className="form-control mb-2"
-              onChange={(e) => setLevel(e.target.value)}
-            >
-              <option value="Beginner">Beginner</option>
-              <option value="Intermediate">Intemediate</option>
-              <option value="Advanced">Advanced</option>
-            </select>
-
             <label>Description</label>
             <input
               type="text"
@@ -134,7 +125,11 @@ function EditAd(props) {
           <div className="d-flex justify-content-center">
             <p>
               Couldn't find the Subject you're looking for?{" "}
-              <a href="/subjects/add">Create a new one!</a>
+              <button className="btn btn-success">
+                <a style={{ color: "white" }} href="/subjects/add">
+                  Create a new one!
+                </a>
+              </button>
             </p>
           </div>
         </div>
