@@ -7,10 +7,10 @@ function AdCard({ ad }) {
   return (
     <div className="col" key={ad._id}>
       <div className="card">
+        <div className="card-header">{ad.subject.title}</div>
         <div className="card-body">
           <h5 className="card-title">{ad.title}</h5>
           <p className="card-text">Location: {ad.location}</p>
-          <p className="card-text">Level: {ad.level}</p>
           {isLoggedIn && (
             <NavLink className="btn btn-success" to={`/ads/${ad._id}`}>
               More details
