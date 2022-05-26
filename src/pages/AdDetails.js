@@ -7,10 +7,10 @@ function AdDetails(props) {
   const navigate = useNavigate();
 
   const { adId } = useParams();
-  const { userId } = useParams();
+  // const { userId } = useParams();
 
   const [ad, setAd] = useState(null);
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
 
   useEffect(() => {
     getAd();
@@ -30,16 +30,16 @@ function AdDetails(props) {
       .catch((err) => console.log("Error getting info from DB", err));
   };
 
-  const getUser = () => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/users/${userId}`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => {
-        setUser(response.data);
-      })
-      .catch((err) => console.log("Error getting info from DB", err));
-  };
+  // const getUser = () => {
+  //   axios
+  //     .get(`${process.env.REACT_APP_API_URL}/users/${userId}`, {
+  //       headers: { Authorization: `Bearer ${storedToken}` },
+  //     })
+  //     .then((response) => {
+  //       setUser(response.data);
+  //     })
+  //     .catch((err) => console.log("Error getting info from DB", err));
+  // };
 
   const deleteAd = (adId) => {
       axios.delete(`${process.env.REACT_APP_API_URL}/ads/${adId}`, {
@@ -82,7 +82,7 @@ function AdDetails(props) {
             <Link
               className="btn btn-success"
               style={{ margin: "10px" }}
-              to={`/users/${userId}`}
+              to={`/profile`}
             >
               Contact your teacher
             </Link>
