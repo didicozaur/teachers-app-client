@@ -32,9 +32,11 @@ function Navbar() {
               <NavLink to="/ads/add" className="nav-link px-2 link-dark">
                 Create New Ad
               </NavLink>
-              <NavLink to="/subjects/add" className="nav-link px-2 link-dark">
-                Create a Subject
-              </NavLink>
+              <li>
+                <NavLink to="/subjects/add" className="nav-link px-2 link-dark">
+                  Create a Subject
+                </NavLink>
+              </li>
             </li>
           )}
         </ul>
