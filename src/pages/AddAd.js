@@ -1,7 +1,8 @@
 import axios from "axios";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function AddAd(props) {
+
   const [title, setTitle] = useState("");
   const [subject, setSubject] = useState("");
   const [experience, setExperience] = useState("");
@@ -9,6 +10,11 @@ function AddAd(props) {
   const [location, setLocation] = useState("");
   const [price, setPrice] = useState("");
   const [level, setLevel] = useState("");
+
+
+  useEffect(() => {
+    setSubject(props.subjects?.[0]?._id);
+  }, [props.subjects]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -69,9 +75,10 @@ function AddAd(props) {
               name="subject"
               className="form-control mb-2"
               onChange={(e) => setSubject(e.target.value)}
+              required={true}
             >
               {props.subjects.map((element) => {
-                return <option value={element.title}>{element.title}</option>;
+                return <option value={element._id}>{element.title}</option>;
               })}
             </select>
 
