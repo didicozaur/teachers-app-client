@@ -19,7 +19,7 @@ import EditAd from "./pages/EditAd";
 function App() {
   const [ads, setAds] = useState([]);
   const [subjects, setSubjects] = useState([]);
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
 
   const fetchAds = () => {
     axios
@@ -30,14 +30,14 @@ function App() {
       .catch((err) => console.log("Error getting ads from DB", err));
   };
 
-  const fetchUsers = () => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/users`)
-      .then((response) => {
-        setUsers(response.data);
-      })
-      .catch((err) => console.log("Error getting ads from DB", err));
-  };
+  // const fetchUsers = () => {
+  //   axios
+  //     .get(`${process.env.REACT_APP_API_URL}/users`)
+  //     .then((response) => {
+  //       setUsers(response.data);
+  //     })
+  //     .catch((err) => console.log("Error getting ads from DB", err));
+  // };
 
   const fetchSubjects = () => {
     axios
@@ -77,7 +77,7 @@ function App() {
         />
         <Route
           path="/ads/:adId"
-          element={<AdDetails updatePage={fetchAds} users={users} />}
+          element={<AdDetails updatePage={fetchAds} />}
         />
         <Route
           path="/ads/:adId/edit"
