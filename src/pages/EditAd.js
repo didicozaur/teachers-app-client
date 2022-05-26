@@ -1,9 +1,9 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-
 function EditAd(props) {
+
   const navigate = useNavigate();
   const { adId } = useParams();
 
@@ -17,10 +17,13 @@ function EditAd(props) {
   const [location, setLocation] = useState(adDetails?.location);
   const [price, setPrice] = useState(adDetails?.price);
 
+   useEffect(() => {
+     setSubject(props.subjects?.[0]?._id);
+   }, [props.subjects]);
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-
 
     const newDetails = {
       title,
@@ -74,9 +77,7 @@ function EditAd(props) {
             >
               {props.subjects.map((element) => {
                 return (
-                  <option key={element._id} value={element.title}>
-                    {element.title}
-                  </option>
+                  <option value={element._id}>{element.title}</option>
                 );
               })}
             </select>
