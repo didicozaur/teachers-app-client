@@ -16,7 +16,7 @@ function EditAd(props) {
   const [description, setDescription] = useState(adDetails?.description);
   const [location, setLocation] = useState(adDetails?.location);
   const [price, setPrice] = useState(adDetails?.price);
-  const [level, setLevel] = useState(adDetails?.levels);
+  const [level, setLevel] = useState(adDetails?.level);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,11 +30,13 @@ function EditAd(props) {
       price,
       level,
     };
-
+    const storedToken = localStorage.getItem("authToken");
     axios
-      .put(`${process.env.REACT_APP_API_URL}/ads/${adId}/edit`, newDetails)
+      .put(`${process.env.REACT_APP_API_URL}/ads/${adId}/edit`, newDetails, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((response) => {
-        props.fetchAds();
+        props.updatePage();
         navigate("/ads");
       })
       .catch((err) => console.log("Error editing Ad in DB", err));
@@ -63,6 +65,7 @@ function EditAd(props) {
 
             <label>Subject</label>
             <select
+              type="text"
               name="subject"
               className="form-control mb-2"
               onChange={(e) => setSubject(e.target.value)}

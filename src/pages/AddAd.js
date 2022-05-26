@@ -1,7 +1,6 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-
 
 function AddAd(props) {
   const [title, setTitle] = useState("");
@@ -17,8 +16,6 @@ function AddAd(props) {
   useEffect(() => {
     setSubject(props.subjects?.[0]?._id);
   }, [props.subjects]);
-
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -80,12 +77,6 @@ function AddAd(props) {
               required={true}
             >
               {props.subjects.map((element) => {
-                return (
-                  <option key={element._id} value={element.title}>
-                    {element.title}
-                  </option>
-                );
-
                 return <option value={element._id}>{element.title}</option>;
               })}
             </select>
@@ -126,7 +117,7 @@ function AddAd(props) {
               onChange={(e) => setPrice(e.target.value)}
             />
 
-            <button className="w-100 btn btn-lg btn-success mb-2" type="submit" >
+            <button className="w-100 btn btn-lg btn-success mb-2" type="submit">
               Submit
             </button>
           </form>
@@ -134,7 +125,11 @@ function AddAd(props) {
           <div className="d-flex justify-content-center">
             <p>
               Couldn't find the Subject you're looking for?{" "}
-              <button className="btn btn-success"><a style={{ "color": "white"}} href="/subjects/add">Create a new one!</a></button>
+              <button className="btn btn-success">
+                <a style={{ color: "white" }} href="/subjects/add">
+                  Create a new one!
+                </a>
+              </button>
             </p>
           </div>
           <hr />
