@@ -4,12 +4,11 @@ import axios from "axios";
 function AddSubject(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const requestBody = { title, description, image };
+    const requestBody = { title, description };
     axios
       .post(`${process.env.REACT_APP_API_URL}/subjects/add`, requestBody)
       .then((response) => {
@@ -22,36 +21,42 @@ function AddSubject(props) {
   };
 
   return (
-    <div className="AddProject">
-      <h3>Add Subject</h3>
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-12 col-md-10 col-lg-8 mx-auto text-center"></div>
 
-      <form onSubmit={handleSubmit}>
-        <label>Title:</label>
-        <input
-          type="text"
-          name="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+        <div className="AddSubject">
+          <h3>Add Subject</h3>
+          <hr />
 
-        <label>Description:</label>
-        <textarea
-          type="text"
-          name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+          <form
+            className="p-4 border rounded-3 bg-light"
+            onSubmit={handleSubmit}
+          >
+            <label>Title:</label>
+            <input
+              type="text"
+              name="title"
+              className="form-control mb-2"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
 
-        <label>Image:</label>
-        <input
-          type="text"
-          name="image"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-        />
+            <label>Description:</label>
+            <textarea
+              type="text"
+              name="description"
+              className="form-control mb-2"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
 
-        <button type="submit">Submit</button>
-      </form>
+            <button className="w-100 btn btn-lg btn-success mb-2" type="submit">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

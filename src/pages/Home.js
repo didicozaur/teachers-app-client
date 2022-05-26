@@ -17,7 +17,7 @@ function Home() {
         </div>
         <div className="col-lg-6">
           <h1 className="display-5 fw-bold lh-1 mb-3">
-            Find Easy...
+            Find Teachers Easily...
             <br />
             Learn Today
           </h1>

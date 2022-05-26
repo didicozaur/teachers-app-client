@@ -5,25 +5,35 @@ function AdList(props) {
 
   const renderAds = () => {
    return (
-     <div>
+     <div className="container">
+     <div className="row xs-1 md-2 g-4">
        {props.ads.map((ad) => {
          return (
-           <div key={ad._id}>
-            <h2>{ad.title}</h2>
-            {ad.location} | {ad.price} euros | {ad.level}
-             <Link to={`/ads/${ad._id}`}>
-               <h5>More Details</h5>
-             </Link>
+           <div className="card" style={{width:"18rem",margin:"25px"}} key={ad._id}>
+             <h5 class="card-header">{ad.subject}</h5>
+             <div className="card-body">
+               <h2 className="card-title">{ad.title}</h2>
+               <div className="card-text">
+                 {ad.description} <hr /> {ad.price} euros | {ad.location}
+               </div>
+               <hr />
+               <Link className="btn btn-success" to={`/ads/${ad._id}`}>
+                 <h5>More Details</h5>
+               </Link>
+             </div>
            </div>
          );
+         
        })}
-     </div>
+       </div>
+       </div>
+     
    );
   };
 
   return (
     <div className="AdsList">
-      <h1>List of Ads</h1>
+      <h1 className="d-flex justify-content-center">List of Ads</h1>
 
       <section>
         {props.ads === null ? <p>loading...</p> : renderAds()}

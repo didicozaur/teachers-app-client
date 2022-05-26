@@ -28,11 +28,14 @@ function SubjectDetailsPage() {
         {subject && (
           <div>
             <h1>{subject.title}</h1>
-            <p>{subject.description}</p>
+            <hr />
+            <dt className="col-sm-3">Description</dt>
+            <dd className="col-sm-9">{subject.description}</dd>
+            
           </div>
         )}
         <Link to="/subjects">
-          <button>Back to Subjects</button>
+          <button className="btn btn-outline-success">Back to Subjects</button>
         </Link>
       </div>
     </div>
