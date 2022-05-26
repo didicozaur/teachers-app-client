@@ -59,7 +59,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/subjects" element={<SubjectsPage />} />
+        <Route
+          path="/subjects"
+          element={<SubjectsPage subjects={subjects} />}
+        />
         <Route
           path="/subjects/add"
           element={<AddSubject updatePage={fetchSubjects} />}

@@ -67,7 +67,11 @@ function EditAd(props) {
               onChange={(e) => setSubject(e.target.value)}
             >
               {props.subjects.map((element) => {
-                return <option value={element.title}>{element.title}</option>;
+                return (
+                  <option key={element._id} value={element.title}>
+                    {element.title}
+                  </option>
+                );
               })}
             </select>
 
@@ -124,7 +128,6 @@ function EditAd(props) {
           </form>
           <hr />
           <div className="d-flex justify-content-center">
-           
             <p>
               Couldn't find the Subject you're looking for?{" "}
               <a href="/subjects/add">Create a new one!</a>

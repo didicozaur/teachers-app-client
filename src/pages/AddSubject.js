@@ -22,6 +22,7 @@ function AddSubject(props) {
         // Reset the state
         setTitle("");
         setDescription("");
+        props.updatePage();
         navigate("/subjects");
       })
       .catch((error) => console.log(error));

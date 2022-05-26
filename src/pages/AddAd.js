@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function AddAd(props) {
   const [title, setTitle] = useState("");
@@ -10,6 +11,8 @@ function AddAd(props) {
   const [price, setPrice] = useState("");
   const [level, setLevel] = useState("");
 
+  const navigate = useNavigate();
+  console.log(subject);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -25,7 +28,6 @@ function AddAd(props) {
       price,
     };
 
-    
     axios
       .post(`${process.env.REACT_APP_API_URL}/ads/add`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -38,7 +40,8 @@ function AddAd(props) {
         setLocation("");
         setPrice("");
         setLevel("");
-        props.fetchAds();
+        props.updatePage();
+        navigate("/ads");
       })
       .catch((err) => console.log("Error creating Ad in DB", err));
   };
@@ -71,7 +74,11 @@ function AddAd(props) {
               onChange={(e) => setSubject(e.target.value)}
             >
               {props.subjects.map((element) => {
-                return <option value={element.title}>{element.title}</option>;
+                return (
+                  <option key={element._id} value={element.title}>
+                    {element.title}
+                  </option>
+                );
               })}
             </select>
 
