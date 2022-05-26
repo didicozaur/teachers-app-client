@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { React, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function AddAd(props) {
   const [title, setTitle] = useState("");
@@ -12,7 +12,6 @@ function AddAd(props) {
   const [level, setLevel] = useState("");
 
   const navigate = useNavigate();
-  console.log(subject);
 
   useEffect(() => {
     setSubject(props.subjects?.[0]?._id);
@@ -80,12 +79,6 @@ function AddAd(props) {
               required={true}
             >
               {props.subjects.map((element) => {
-                return (
-                  <option key={element._id} value={element.title}>
-                    {element.title}
-                  </option>
-                );
-
                 return <option value={element._id}>{element.title}</option>;
               })}
             </select>
