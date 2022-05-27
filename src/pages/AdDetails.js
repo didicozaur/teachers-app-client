@@ -88,7 +88,7 @@ function AdDetails(props) {
               style={{ margin: "10px" }}
               to={`/profile`}
             >
-              Contact your teacher
+              Contact your teacher - Coming soon!
             </Link>
 
             { user?._id===ad.user && (
