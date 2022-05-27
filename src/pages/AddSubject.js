@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 function AddSubject(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [errorMessage, setErrorMessage] = useState(undefined);
 
   const navigate = useNavigate();
 
@@ -26,7 +27,10 @@ function AddSubject(props) {
         props.updatePage();
         navigate("/subjects");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      });
   };
 
   return (
@@ -35,6 +39,11 @@ function AddSubject(props) {
         <div className="col-12 col-md-10 col-lg-8 mx-auto text-center"></div>
 
         <div className="AddSubject">
+          {errorMessage && (
+            <p className="bg-danger text-white error-message p-2">
+              {errorMessage}
+            </p>
+          )}
           <h3>Add Subject</h3>
           <hr />
 
@@ -49,6 +58,7 @@ function AddSubject(props) {
               className="form-control mb-2"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              required={true}
             />
 
             <label>Description:</label>
@@ -58,6 +68,7 @@ function AddSubject(props) {
               className="form-control mb-2"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              required={true}
             />
 
             <button className="w-100 btn btn-lg btn-success mb-2" type="submit">

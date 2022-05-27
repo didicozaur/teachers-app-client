@@ -16,6 +16,7 @@ function EditAd(props) {
   const [description, setDescription] = useState(adDetails?.description);
   const [location, setLocation] = useState(adDetails?.location);
   const [price, setPrice] = useState(adDetails?.price);
+  const [errorMessage, setErrorMessage] = useState(undefined);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,7 +40,10 @@ function EditAd(props) {
         props.updatePage();
         navigate("/ads");
       })
-      .catch((err) => console.log("Error editing Ad in DB", err));
+      .catch((error) => {
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      });
   };
 
   return (
@@ -48,8 +52,13 @@ function EditAd(props) {
         <div className="col-12 col-md-10 col-lg-8 mx-auto text-center"></div>
         <div className="EditAd">
           <h3>Update your ad</h3>
-          <hr />
 
+          <hr />
+          {errorMessage && (
+            <p className="bg-danger text-white error-message p-2">
+              {errorMessage}
+            </p>
+          )}
           <form
             onSubmit={handleSubmit}
             className="p-4 border rounded-3 bg-light"
@@ -61,6 +70,7 @@ function EditAd(props) {
               className="form-control mb-2"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              required={true}
             />
 
             <label>Subject</label>
@@ -69,11 +79,10 @@ function EditAd(props) {
               name="subject"
               className="form-control mb-2"
               onChange={(e) => setSubject(e.target.value)}
+              required={true}
             >
               {props.subjects.map((element) => {
-                return (
-                  <option value={element._id}>{element.title}</option>
-                );
+                return <option value={element._id}>{element.title}</option>;
               })}
             </select>
 
@@ -84,6 +93,7 @@ function EditAd(props) {
               className="form-control mb-2"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              required={true}
             />
 
             <label>Experience</label>
@@ -93,6 +103,7 @@ function EditAd(props) {
               className="form-control mb-2"
               value={experience}
               onChange={(e) => setExperience(e.target.value)}
+              required={true}
             />
 
             <label>Location</label>
@@ -102,6 +113,7 @@ function EditAd(props) {
               className="form-control mb-2"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
+              required={true}
             />
 
             <label>Price</label>
@@ -111,6 +123,7 @@ function EditAd(props) {
               className="form-control mb-2"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
+              required={true}
             />
 
             <button className="w-100 btn btn-lg btn-success mb-2" type="submit">

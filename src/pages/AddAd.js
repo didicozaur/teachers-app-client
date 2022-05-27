@@ -9,6 +9,8 @@ function AddAd(props) {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [price, setPrice] = useState("");
+  
+  const [errorMessage, setErrorMessage] = useState(undefined);
 
   const navigate = useNavigate()
 
@@ -45,7 +47,10 @@ function AddAd(props) {
         props.updatePage();
         navigate("/ads");
       })
-      .catch((err) => console.log("Error creating Ad in DB", err));
+      .catch((error) => {
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      });
   };
 
   return (
@@ -53,8 +58,14 @@ function AddAd(props) {
       <div className="row justify-content-center">
         <div className="col-12 col-md-10 col-lg-8 mx-auto text-center"></div>
         <div className="AddAd">
+          
           <h3>New Ad</h3>
           <hr />
+          {errorMessage && (
+            <p className="bg-danger text-white error-message p-2">
+              {errorMessage}
+            </p>
+          )}
 
           <form
             onSubmit={handleSubmit}
