@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 
 function AdCard({ ad }) {
   const { isLoggedIn } = useContext(AuthContext);
+ 
+
   return (
     <div className="col" key={ad?._id}>
       <div className="card">

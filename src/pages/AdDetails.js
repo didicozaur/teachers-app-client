@@ -1,6 +1,8 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
+
 
 function AdDetails(props) {
 
@@ -11,6 +13,8 @@ function AdDetails(props) {
 
   const [ad, setAd] = useState(null);
   // const [user, setUser] = useState(null);
+
+  const { user } = useContext(AuthContext)
 
   useEffect(() => {
     getAd();
@@ -63,10 +67,10 @@ function AdDetails(props) {
           <dt className="col-sm-3">Title</dt>
           <dd className="col-sm-9">{ad.title}</dd>
 
-        <dt className="col-sm-3">Details</dt>
-        <dd className="col-sm-9">
-          {ad.location} | {ad.price} euros {" "}
-        </dd>
+          <dt className="col-sm-3">Details</dt>
+          <dd className="col-sm-9">
+            {ad.location} | {ad.price} euros{" "}
+          </dd>
 
           <hr />
 
@@ -87,24 +91,29 @@ function AdDetails(props) {
               Contact your teacher
             </Link>
 
-            <Link
-              className="btn btn-outline-success"
-              style={{ margin: "10px" }}
-              to={`/ads/${ad._id}/edit`}
-            >
+            { user?._id===ad.user && (
+              <>
+
+            <Link className="btn btn-outline-success" style={{ margin: "10px" }} to={`/ads/${ad._id}/edit`}>
               Edit
             </Link>
 
-          <button
-            style={{ margin: "10px" }}
-            className="btn btn-outline-danger"
-            onClick={() => {
-              deleteAd(ad._id);
-            }}> Delete</button>
-        </div>
+            <button
+              style={{ margin: "10px" }}
+              className="btn btn-outline-danger"
+              onClick={() => {
+                deleteAd(ad._id);
+              }}>
+              {" "}
+              Delete
+            </button>
+
+            </>
+            )}
+          </div>
         </div>
       </div>
-    )
+    );
     }
   
   
